@@ -6,10 +6,12 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
+    "start": "npm run cds:watch",
     "cds:build": "cds build",
     "cds:start": "cds run",
     "cds:watch": "cds watch",
-    "start": "npm run cds:watch"
+    "add:persistance": "cds deploy --to sqlite",
+    "add:lcl:db": "npm run add:persistance"
   },
   "dependencies": {
     "@sap/cds": "^6",
