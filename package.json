@@ -1,0 +1,28 @@
+{
+  "name": "capire-demo",
+  "version": "1.0.0",
+  "description": "SolidJS & CAP",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm-run-all --parallel start:ui start:server",
+    "start:server": "yarn workspace capire start",
+    "start:ui": "yarn workspace solid-js-cap start"
+  },
+  "keywords": [
+    "CAP",
+    "SolidJS"
+  ],
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github<todo>.git"
+  },
+  "author": "Marco Beier",
+  "license": "Unlicense",
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

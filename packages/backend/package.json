@@ -1,0 +1,43 @@
+{
+  "name": "capire",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "cds:build": "cds build",
+    "cds:start": "cds run",
+    "cds:watch": "cds watch",
+    "start": "npm run cds:watch"
+  },
+  "dependencies": {
+    "@sap/cds": "^6",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "sqlite3": "^5.0.4"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "database": "db.sqlite"
+        }
+      },
+      "auth": {
+        "kind": "basic",
+        "users": {
+          "alice": {
+            "password": "test",
+            "roles": [
+              "admin"
+            ],
+            "userAttributes": {}
+          }
+        }
+      }
+    }
+  }
+}

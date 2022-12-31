@@ -1,0 +1,21 @@
+{
+  "name": "solid-js-cap",
+  "version": "0.0.0",
+  "description": "SolidJS application consuming CAP Service",
+  "private": true,
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "typescript": "^4.9.4",
+    "vite": "^4.0.3",
+    "vite-plugin-solid": "^2.5.0"
+  },
+  "dependencies": {
+    "solid-js": "^1.6.6"
+  }
+}
