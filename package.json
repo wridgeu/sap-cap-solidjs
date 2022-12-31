@@ -4,7 +4,7 @@
   "description": "SolidJS & CAP",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel start:ui start:server",
+    "start": "npm-run-all --parallel start:server start:ui",
     "start:server": "yarn workspace capire start",
     "start:ui": "yarn workspace solid-js-cap start"
   },

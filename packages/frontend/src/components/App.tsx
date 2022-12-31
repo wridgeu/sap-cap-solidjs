@@ -1,5 +1,6 @@
 import { Component, onMount } from "solid-js";
 import { createStore } from "solid-js/store";
+
 import Table from "./Table";
 
 import styles from "./App.module.css";
@@ -31,6 +32,7 @@ const App: Component = () => {
       await fetch(`http://localhost:4004/todo/Todos`)
     ).json();
     setTodos(response);
+    console.log(response);
   });
   return (
     <div class={styles.App}>
