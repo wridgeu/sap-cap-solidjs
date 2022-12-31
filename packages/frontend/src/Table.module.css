@@ -1,0 +1,4 @@
+ui5-table ui5-table-column.tableHeader::part(column) {
+	text-align: center;
+	font-weight: bold;
+}
