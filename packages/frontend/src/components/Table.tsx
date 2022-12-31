@@ -10,7 +10,7 @@ import "@ui5/webcomponents-icons/dist/pending";
 import styles from "./Table.module.css";
 
 // rudimentary
-type todo = {
+type Todo = {
   ID: string;
   createdAt: string;
   createdBy: string;
@@ -34,7 +34,7 @@ declare module "solid-js" {
   }
 }
 
-const Table: Component<{ todos: todo[]; colHeaders: string[] }> = (props) => {
+const Table: Component<{ todos: Todo[]; colHeaders: string[] }> = (props) => {
   const mergedProps = mergeProps({ todos: [], colHeaders: [] }, props);
   return (
     <div>
@@ -55,7 +55,7 @@ const Table: Component<{ todos: todo[]; colHeaders: string[] }> = (props) => {
           each={mergedProps.todos}
           fallback={<ui5-table-row>No data ...</ui5-table-row>}
         >
-          {(todoItem: todo) => (
+          {(todoItem: Todo) => (
             <ui5-table-row>
               <ui5-table-cell>{todoItem.ID}</ui5-table-cell>
               <ui5-table-cell>
