@@ -24,12 +24,12 @@ type Todo = {
 declare module "solid-js" {
   namespace JSX {
     interface IntrinsicElements {
-      "ui5-table": JSX.IntrinsicElements["table"];
-      "ui5-table-column": JSX.IntrinsicElements["th"];
-      "ui5-table-row": JSX.IntrinsicElements["tr"];
-      "ui5-table-cell": JSX.IntrinsicElements["td"];
-      "ui5-badge": JSX.IntrinsicElements["div"];
-      "ui5-icon": JSX.IntrinsicElements["svg"] & { name: string; slot: string };
+      "ui5-table": HTMLAttributes<HTMLElement>; //JSX.IntrinsicElements["table"];
+      "ui5-table-column": HTMLAttributes<HTMLElement>;
+      "ui5-table-row": HTMLAttributes<HTMLElement>;
+      "ui5-table-cell": HTMLAttributes<HTMLElement>;
+      "ui5-badge": HTMLAttributes<HTMLElement>;
+      "ui5-icon": HTMLAttributes<HTMLElement> & { name: string; slot: string };
     }
   }
 }
