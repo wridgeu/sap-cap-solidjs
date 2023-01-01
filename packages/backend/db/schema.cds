@@ -5,7 +5,14 @@ using {
 
 namespace db.todos;
 
+annotate cuid with {
+    ID @title: '{i18n>ID}';
+}
+
 entity Todos : cuid, managed {
+    @title: '{i18n>Title}'
     title     : String;
-    completed : Boolean;
+
+    @title: '{i18n>Completed}'
+    completed : Boolean default false not null;
 }
