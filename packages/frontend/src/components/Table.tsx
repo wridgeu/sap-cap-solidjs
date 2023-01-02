@@ -8,17 +8,7 @@ import "@ui5/webcomponents-icons/dist/accept";
 import "@ui5/webcomponents-icons/dist/pending";
 
 import styles from "./Table.module.css";
-
-// rudimentary
-type Todo = {
-  ID: string;
-  createdAt: string;
-  createdBy: string;
-  modifiedAt: string;
-  modifiedBy: string;
-  title: string;
-  completed: boolean;
-};
+import { Todo } from "../stores/todo.store";
 
 // https://stackoverflow.com/a/72239265/10323879
 declare module "solid-js" {
@@ -34,10 +24,12 @@ declare module "solid-js" {
   }
 }
 
-const Table: Component<{ todos: Todo[]; colHeaders: string[] }> = (props) => {
+export const Table: Component<{ todos: Todo[]; colHeaders: string[] }> = (
+  props
+) => {
   const mergedProps = mergeProps({ todos: [], colHeaders: [] }, props);
   return (
-    <div>
+    <>
       <ui5-table>
         <For
           each={Object.keys(mergedProps.colHeaders)}
@@ -85,8 +77,6 @@ const Table: Component<{ todos: Todo[]; colHeaders: string[] }> = (props) => {
           )}
         </For>
       </ui5-table>
-    </div>
+    </>
   );
 };
-
-export default Table;

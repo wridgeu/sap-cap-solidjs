@@ -1,7 +1,7 @@
 import { Component, onMount } from "solid-js";
-import { createStore } from "solid-js/store";
 
-import Table from "./Table";
+import { Table } from "./Table";
+import { useTodos } from "../stores/todo.store";
 
 import styles from "./App.module.css";
 
@@ -15,18 +15,8 @@ import styles from "./App.module.css";
  * https://www.solidjs.com/tutorial/stores_createstore
  */
 
-const App: Component = () => {
-  const [todos, setTodos] = createStore([]);
-  // const addTodo = (text) => {
-  //   // setTodos([...todos, { text, completed: false }]);
-  // };
-  // const toggleTodo = (id) => {
-  //   // setTodos(
-  //   //   (todo) => todo.id === id,
-  //   //   "completed",
-  //   //   (completed) => !completed
-  //   // );
-  // };
+export const App: Component = () => {
+  const [todos, setTodos] = useTodos(); // how to type this?
   onMount(async () => {
     const { value: response } = await (
       await fetch(`http://localhost:4004/todo/Todos`)
@@ -43,5 +33,3 @@ const App: Component = () => {
     </div>
   );
 };
-
-export default App;
