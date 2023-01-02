@@ -1,6 +1,5 @@
-import { ParentComponent, createContext, useContext } from "solid-js";
+import { ParentComponent, createContext, onMount, useContext } from "solid-js";
 import { SetStoreFunction, createStore } from "solid-js/store";
-import { m } from "vitest/dist/index-40ebba2b";
 
 export type Todo = {
   ID: string;
@@ -30,7 +29,6 @@ const defaultState = {
 };
 
 /**
- * see:
  * - https://www.solidjs.com/tutorial/stores_context
  * - https://www.solidjs.com/tutorial/stores_nocontext
  * - https://www.solidjs.com/examples/context
@@ -41,9 +39,17 @@ const TodoContext = createContext<TodoContextValue>([
     setTodos: () => undefined,
   },
 ]);
-
 export const TodoProvider: ParentComponent = (props) => {
   const [todos, setTodos] = createStore<Todo[]>([]);
+
+  onMount(async () => {
+    // could be replaced, see #1
+    const { value: response } = await (
+      await fetch(`http://localhost:4004/todo/Todos`)
+    ).json();
+    setTodos(response);
+  });
+
   return (
     <TodoContext.Provider value={[todos, { setTodos }]}>
       {props.children}
