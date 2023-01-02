@@ -24,7 +24,7 @@ declare module "solid-js" {
   }
 }
 
-export const Table: Component<{ todos: Todo[]; colHeaders: string[] }> = (
+export const Table: Component<{ todos: Todo[]; colHeaders: Todo }> = (
   props
 ) => {
   const mergedProps = mergeProps({ todos: [], colHeaders: [] }, props);

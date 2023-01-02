@@ -1,5 +1,6 @@
-import { Component, JSX, createContext, useContext } from "solid-js";
+import { ParentComponent, createContext, useContext } from "solid-js";
 import { SetStoreFunction, createStore } from "solid-js/store";
+import { m } from "vitest/dist/index-40ebba2b";
 
 export type Todo = {
   ID: string;
@@ -11,20 +12,42 @@ export type Todo = {
   completed: boolean;
 };
 
+export type TodoContextValue = [
+  todos: Todo[],
+  actions: {
+    setTodos: SetStoreFunction<Todo[]> | (() => void);
+  }
+];
+
+const defaultState = {
+  ID: "",
+  createdAt: "",
+  createdBy: "",
+  modifiedAt: "",
+  modifiedBy: "",
+  title: "",
+  completed: false,
+};
+
 /**
  * see:
  * - https://www.solidjs.com/tutorial/stores_context
  * - https://www.solidjs.com/tutorial/stores_nocontext
+ * - https://www.solidjs.com/examples/context
  */
-const TodoContext = createContext<(Todo[] | SetStoreFunction<Todo[]>)[]>();
+const TodoContext = createContext<TodoContextValue>([
+  [defaultState],
+  {
+    setTodos: () => undefined,
+  },
+]);
 
-export const TodoProvider: Component<{
-  children: JSX.Element;
-}> = (props) => {
+export const TodoProvider: ParentComponent = (props) => {
   const [todos, setTodos] = createStore<Todo[]>([]);
-  const store = [todos, setTodos];
   return (
-    <TodoContext.Provider value={store}>{props.children}</TodoContext.Provider>
+    <TodoContext.Provider value={[todos, { setTodos }]}>
+      {props.children}
+    </TodoContext.Provider>
   );
 };
 

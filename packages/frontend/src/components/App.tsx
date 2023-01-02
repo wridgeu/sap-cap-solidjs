@@ -16,7 +16,7 @@ import styles from "./App.module.css";
  */
 
 export const App: Component = () => {
-  const [todos, setTodos] = useTodos(); // how to type this?
+  const [todos, { setTodos }] = useTodos(); // how to type this?
   onMount(async () => {
     const { value: response } = await (
       await fetch(`http://localhost:4004/todo/Todos`)
