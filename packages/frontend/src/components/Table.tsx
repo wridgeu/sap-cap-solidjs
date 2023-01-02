@@ -1,4 +1,4 @@
-import { Component, mergeProps, For, Show } from "solid-js";
+import { Component, For, Show } from "solid-js";
 import "@ui5/webcomponents/dist/Table";
 import "@ui5/webcomponents/dist/TableColumn";
 import "@ui5/webcomponents/dist/TableRow";
@@ -8,7 +8,7 @@ import "@ui5/webcomponents-icons/dist/accept";
 import "@ui5/webcomponents-icons/dist/pending";
 
 import styles from "./Table.module.css";
-import { Todo } from "../stores/todo.store";
+import { Todo, useTodos } from "../stores/todo.store";
 
 // https://stackoverflow.com/a/72239265/10323879
 declare module "solid-js" {
@@ -24,15 +24,15 @@ declare module "solid-js" {
   }
 }
 
-export const Table: Component<{ todos: Todo[]; colHeaders: Todo }> = (
+export const Table: Component<{ colHeaders: string[] | undefined }> = (
   props
 ) => {
-  const mergedProps = mergeProps({ todos: [], colHeaders: [] }, props);
+  const [todos] = useTodos();
   return (
     <>
       <ui5-table>
         <For
-          each={Object.keys(mergedProps.colHeaders)}
+          each={props.colHeaders}
           fallback={
             <ui5-table-column slot="columns">No data ...</ui5-table-column>
           }
@@ -43,10 +43,7 @@ export const Table: Component<{ todos: Todo[]; colHeaders: Todo }> = (
             </ui5-table-column>
           )}
         </For>
-        <For
-          each={mergedProps.todos}
-          fallback={<ui5-table-row>No data ...</ui5-table-row>}
-        >
+        <For each={todos} fallback={<ui5-table-row>No data ...</ui5-table-row>}>
           {(todoItem: Todo) => (
             <ui5-table-row>
               <ui5-table-cell>{todoItem.ID}</ui5-table-cell>

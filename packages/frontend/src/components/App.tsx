@@ -1,4 +1,4 @@
-import { Component, onMount } from "solid-js";
+import { Component, createSignal, onMount } from "solid-js";
 
 import { Table } from "./Table";
 import { useTodos } from "../stores/todo.store";
@@ -16,12 +16,15 @@ import styles from "./App.module.css";
  */
 
 export const App: Component = () => {
-  const [todos, { setTodos }] = useTodos(); // how to type this?
+  const [columnHeaders, setHeaders] = createSignal<string[]>();
+  const [todos, { setTodos }] = useTodos();
   onMount(async () => {
+    // could be replaced, see #1
     const { value: response } = await (
       await fetch(`http://localhost:4004/todo/Todos`)
     ).json();
     setTodos(response);
+    setHeaders(Object.keys(todos[1]));
     console.log(response);
   });
   return (
@@ -29,7 +32,7 @@ export const App: Component = () => {
       <header>
         <h1>Todo App</h1>
       </header>
-      <Table colHeaders={todos[1]} todos={todos} />
+      <Table colHeaders={columnHeaders()} />
     </div>
   );
 };
