@@ -1,22 +1,17 @@
 import { createStore } from "solid-js/store";
 
 export type Todo = {
-  ID: string;
-  createdAt: string;
-  createdBy: string;
-  modifiedAt: string;
-  modifiedBy: string;
+  ID?: string;
+  createdAt?: string;
+  createdBy?: string;
+  modifiedAt?: string;
+  modifiedBy?: string;
   title: string;
   completed: boolean;
 };
 
 export const [todos, setTodos] = createStore<Todo[]>([
   {
-    ID: "",
-    createdAt: "",
-    createdBy: "",
-    modifiedAt: "",
-    modifiedBy: "",
     title: "",
     completed: false,
   },
@@ -29,5 +24,8 @@ export const actions = {
       "completed",
       (completed) => !completed
     );
+  },
+  addTodo(title: string) {
+    setTodos([...todos, { title, completed: false }]);
   },
 };
