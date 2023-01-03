@@ -1,9 +1,11 @@
 import { Component, onMount } from "solid-js";
+import { setTodos } from "../stores/todo";
 
 import { Table } from "./Table";
+import { NewItem } from "./NewItem";
 
 import styles from "./App.module.css";
-import { setTodos } from "../stores/todo";
+import { getTodos } from "../api/TodoApiWrapper";
 
 /**
  * - Initial Data Load (onMount?)
@@ -16,9 +18,7 @@ import { setTodos } from "../stores/todo";
 export const App: Component = () => {
   onMount(async () => {
     // could be replaced, see #1
-    const { value: response } = await (
-      await fetch(`http://localhost:4004/todo/Todos`)
-    ).json();
+    const { value: response } = await getTodos();
     setTodos(response);
   });
 
@@ -27,6 +27,7 @@ export const App: Component = () => {
       <header>
         <h1>Todo App</h1>
       </header>
+      <NewItem />
       <Table />
     </div>
   );

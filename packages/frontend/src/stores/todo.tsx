@@ -25,7 +25,10 @@ export const actions = {
       (completed) => !completed
     );
   },
-  addTodo(title: string) {
-    setTodos([...todos, { title, completed: false }]);
+  addTodo(title: string, completed = false) {
+    setTodos([...todos, { title, completed }]);
+  },
+  removeTodo(id: string) {
+    setTodos([...todos.filter((todo) => todo.ID !== id)]);
   },
 };

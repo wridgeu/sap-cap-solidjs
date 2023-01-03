@@ -12,8 +12,10 @@ import styles from "./Table.module.css";
 import { type Todo, todos, actions } from "../stores/todo";
 
 export const Table: Component = () => {
-  const onClick = (event: Event) =>
+  const onToggle = (event: Event) =>
     actions.toggleTodo((event.currentTarget as HTMLElement).dataset?.item!);
+  const onDelete = (event: Event) =>
+    actions.removeTodo((event.currentTarget as HTMLElement).dataset?.item!);
 
   return (
     <>
@@ -62,8 +64,11 @@ export const Table: Component = () => {
                 </Show>
               </ui5-table-cell>
               <ui5-table-cell>
-                <ui5-button attr:data-item={todoItem.ID} onClick={onClick}>
+                <ui5-button attr:data-item={todoItem.ID} onClick={onToggle}>
                   Toggle
+                </ui5-button>
+                <ui5-button attr:data-item={todoItem.ID} onClick={onDelete}>
+                  Delete
                 </ui5-button>
               </ui5-table-cell>
             </ui5-table-row>

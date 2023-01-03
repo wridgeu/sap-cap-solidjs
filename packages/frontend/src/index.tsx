@@ -14,9 +14,14 @@ declare module "solid-js" {
       "ui5-table-cell": HTMLAttributes<HTMLElement>;
       "ui5-badge": HTMLAttributes<HTMLElement>;
       "ui5-button": HTMLAttributes<HTMLElement>;
+      "ui5-input": HTMLAttributes<HTMLElement> & {
+        "show-clear-icon"?: boolean;
+        value?: string;
+        placeholder?: string;
+      };
       "ui5-icon": HTMLAttributes<HTMLElement> & { name: string; slot: string };
     }
   }
 }
 
-render(() => <App />, document.getElementById("root") as HTMLElement);
+render(() => <App />, document.getElementById("root") as HTMLDivElement);
