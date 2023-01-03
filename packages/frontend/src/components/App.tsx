@@ -1,8 +1,9 @@
-import { Component } from "solid-js";
+import { Component, onMount } from "solid-js";
 
 import { Table } from "./Table";
 
 import styles from "./App.module.css";
+import { setTodos } from "../stores/todo";
 
 /**
  * - Initial Data Load (onMount?)
@@ -13,6 +14,14 @@ import styles from "./App.module.css";
  */
 
 export const App: Component = () => {
+  onMount(async () => {
+    // could be replaced, see #1
+    const { value: response } = await (
+      await fetch(`http://localhost:4004/todo/Todos`)
+    ).json();
+    setTodos(response);
+  });
+
   return (
     <div class={styles.App}>
       <header>

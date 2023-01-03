@@ -2,7 +2,6 @@
 import { render } from "solid-js/web";
 
 import "./index.css";
-import { TodoProvider } from "./stores/todo.store";
 import { App } from "./components/App";
 
 // https://stackoverflow.com/a/72239265/10323879
@@ -19,11 +18,4 @@ declare module "solid-js" {
   }
 }
 
-render(
-  () => (
-    <TodoProvider>
-      <App />
-    </TodoProvider>
-  ),
-  document.getElementById("root") as HTMLElement
-);
+render(() => <App />, document.getElementById("root") as HTMLElement);
