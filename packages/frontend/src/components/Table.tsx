@@ -12,12 +12,11 @@ import styles from "./Table.module.css";
 import { type Todo, todos, actions } from "../stores/todo";
 
 export const Table: Component = () => {
-  const onBtn = (e) =>
-    actions.toggleTodo("0f69c6d1-2d67-4a73-8533-3bcbc4d8d653");
+  const onClick = (event: Event) =>
+    actions.toggleTodo((event.currentTarget as HTMLElement).dataset?.item!);
 
   return (
     <>
-      <ui5-button onClick={onBtn} text="test"></ui5-button>
       <ui5-table>
         <Show
           when={todos[1]}
@@ -38,11 +37,13 @@ export const Table: Component = () => {
             <ui5-table-row>
               <ui5-table-cell>{todoItem.ID}</ui5-table-cell>
               <ui5-table-cell>
-                {new Date(todoItem.createdAt).toLocaleDateString()}
+                {todoItem.createdAt &&
+                  new Date(todoItem.createdAt).toLocaleDateString()}
               </ui5-table-cell>
               <ui5-table-cell>{todoItem.createdBy}</ui5-table-cell>
               <ui5-table-cell>
-                {new Date(todoItem.modifiedAt).toLocaleDateString()}
+                {todoItem.modifiedAt &&
+                  new Date(todoItem.modifiedAt).toLocaleDateString()}
               </ui5-table-cell>
               <ui5-table-cell>{todoItem.modifiedBy}</ui5-table-cell>
               <ui5-table-cell>{todoItem.title}</ui5-table-cell>
@@ -59,6 +60,11 @@ export const Table: Component = () => {
                     <ui5-icon name="accept" slot="icon"></ui5-icon>done
                   </ui5-badge>
                 </Show>
+              </ui5-table-cell>
+              <ui5-table-cell>
+                <ui5-button attr:data-item={todoItem.ID} onClick={onClick}>
+                  Toggle
+                </ui5-button>
               </ui5-table-cell>
             </ui5-table-row>
           )}

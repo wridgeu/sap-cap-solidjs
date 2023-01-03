@@ -13,6 +13,7 @@ declare module "solid-js" {
       "ui5-table-row": HTMLAttributes<HTMLElement>;
       "ui5-table-cell": HTMLAttributes<HTMLElement>;
       "ui5-badge": HTMLAttributes<HTMLElement>;
+      "ui5-button": HTMLAttributes<HTMLElement>;
       "ui5-icon": HTMLAttributes<HTMLElement> & { name: string; slot: string };
     }
   }
