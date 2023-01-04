@@ -36,7 +36,7 @@ export const addTodo = async (title: string): Promise<Todo> => {
 };
 
 // Would be interesting to use: https://sap.github.io/cloud-sdk/docs/js/features/odata/generate-client
-
+// so one could make a fully typed client-api for all the requests incl. all of ODatas params/options (count ...)
 async function send({
   method,
   url,
