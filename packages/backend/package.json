@@ -1,45 +1,50 @@
 {
-  "name": "capire",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "scripts": {
-    "start": "npm run cds:watch",
-    "cds:build": "cds build",
-    "cds:start": "cds run",
-    "cds:watch": "cds watch",
-    "add:persistance": "cds deploy --to sqlite",
-    "add:lcl:db": "npm run add:persistance"
-  },
-  "dependencies": {
-    "@sap/cds": "^6",
-    "express": "^4"
-  },
-  "devDependencies": {
-    "sqlite3": "^5.0.4"
-  },
-  "cds": {
-    "requires": {
-      "db": {
-        "kind": "sqlite",
-        "credentials": {
-          "database": "db.sqlite"
+    "name": "capire",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "start": "npm run cds:watch",
+        "cds:build": "cds build",
+        "cds:start": "cds run",
+        "cds:watch": "cds watch",
+        "add:persistance": "cds deploy --to sqlite",
+        "add:lcl:db": "npm run add:persistance",
+        "watch-list": "cds watch --open list/webapp/index.html?sap-ui-xx-viewCache=false"
+    },
+    "dependencies": {
+        "@sap/cds": "^6",
+        "express": "^4"
+    },
+    "devDependencies": {
+        "@sap/ux-specification": "latest",
+        "sqlite3": "^5.0.4"
+    },
+    "cds": {
+        "requires": {
+            "db": {
+                "kind": "sqlite",
+                "credentials": {
+                    "database": "db.sqlite"
+                }
+            },
+            "auth": {
+                "kind": "basic",
+                "users": {
+                    "alice": {
+                        "password": "test",
+                        "roles": [
+                            "admin"
+                        ],
+                        "userAttributes": {}
+                    }
+                }
+            }
         }
-      },
-      "auth": {
-        "kind": "basic",
-        "users": {
-          "alice": {
-            "password": "test",
-            "roles": [
-              "admin"
-            ],
-            "userAttributes": {}
-          }
-        }
-      }
-    }
-  }
+    },
+    "sapux": [
+        "app/list"
+    ]
 }
