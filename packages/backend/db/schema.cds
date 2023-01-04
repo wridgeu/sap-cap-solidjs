@@ -1,9 +1,10 @@
+namespace db.todos;
+
 using {
     cuid,
     managed
 } from '@sap/cds/common';
 
-namespace db.todos;
 
 annotate cuid with {
     ID @title: '{i18n>ID}';
