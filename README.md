@@ -7,20 +7,20 @@ Playground Monorepo to learn more about SAP CAP, a bit of SolidJS and maybe even
 ### Testing
 
 - [ ] [CAP Tests](https://cap.cloud.sap/docs/node.js/cds-test)
-- [ ] [Vitest](https://vitest.dev/) for [SolidJS](https://github.com/solidjs/solid-testing-library)
+- [X] [Vitest](https://vitest.dev/) for [SolidJS](https://github.com/solidjs/solid-testing-library)
 
 ### CAP
 
-- [ ] Working with Auth.?
+- [X] Working with Auth.?
 - [ ] Trying out MTA, Bundling/Packaging in general
 - [ ] Fiddle with deployment to BAS + HTML5 Repository
 - [ ] Fiddling with Fiori Elements in addition to SolidJS
 
 ### SolidJS
 
-- [ ] Work with Stores
-- [ ] Try embedding UI5 WebComponents
-- [ ] Create, Read, Update and Deletion of Todos (KIS)
+- [X] Work with Stores
+- [X] Try embedding UI5 WebComponents
+- [X] Create, Read, Update and Deletion of Todos (KIS)
 - [ ] Bundling/Packaging + with CAP
 
 ### General
@@ -39,3 +39,4 @@ After fiddling around a bit, reading some blogs and watching a few videos (like 
 - [UI5 Community CAP Event App](https://github.com/SAP-samples/ui5-cap-event-app)
 - [CAP + UIveri5 by Volker Buzek](https://github.com/vobu/ui5-cap)
 - [UI5 Freestyle in CAP by Wouter Lemaire](https://blogs.sap.com/2020/07/08/ui5-freestyle-app-in-cap/)
+- [Real World SolidJS Example](https://github.com/solidjs/solid-realworld)
