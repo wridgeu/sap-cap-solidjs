@@ -18,3 +18,13 @@ Authorization: Basic YWxpY2U6dGVzdA==
 {
 	"title": "test123"
 }
+
+###
+
+PATCH http://localhost:4004/todo/Todos/50b56bcd-70e3-4069-99bf-e04a2127d585
+content-type: application/json
+Authorization: Basic YWxpY2U6dGVzdA==
+
+{
+  "completed": true
+}
