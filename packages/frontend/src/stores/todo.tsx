@@ -1,5 +1,5 @@
 import { createStore } from "solid-js/store";
-import { removeTodo } from "../api/TodoApiWrapper";
+import { addTodo, removeTodo, updateTodo } from "../api/TodoApiWrapper";
 
 export type Todo = {
   ID?: string;
@@ -11,38 +11,42 @@ export type Todo = {
   completed: boolean;
 };
 
-export const [todos, setTodos] = createStore<Todo[]>([
-  {
-    title: "",
-    completed: false,
-  },
-]);
+export const [todos, setTodos] = createStore<Todo[]>([]);
 
 export const actions = {
-  toggleTodo(id: string) {
-    setTodos(
-      (todo) => todo.ID === id,
-      "completed",
-      (completed) => !completed
-      // add request
-    );
+  async toggleTodo(id: string) {
+    const todo = todos.find((todo) => todo.ID === id);
+
+    if (!todo) return;
+
+    try {
+      await updateTodo(todo.ID!, { completed: !todo.completed });
+      setTodos(
+        (todo) => todo.ID === id,
+        "completed",
+        (completed) => !completed
+      );
+    } catch (error) {
+      console.error(error);
+    }
   },
-  addTodo(object: Todo) {
-    setTodos([...todos, object]);
+  async addTodo(title: string) {
+    try {
+      const response = await addTodo(title);
+      setTodos([...todos, response]);
+    } catch (error) {
+      console.error(error);
+    }
   },
   // addTodo(title: string, completed = false) {
   //   setTodos([...todos, { title, completed }]);
   // }, → explore overloading in ts
   async removeTodo(id: string) {
     try {
-      const response = await removeTodo(id);
-      if (!response.ok) {
-        throw new Error(`Erroneous response: ${response.statusText}`);
-      }
+      await removeTodo(id);
+      setTodos([...todos.filter((todo) => todo.ID !== id)]);
     } catch (error) {
-      throw new Error("Fehler beim Fetch", { cause: error });
+      console.error(error);
     }
-
-    setTodos([...todos.filter((todo) => todo.ID !== id)]);
   },
 };

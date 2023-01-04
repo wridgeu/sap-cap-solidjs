@@ -1,43 +1,73 @@
 import { type Todo } from "../stores/todo";
 
-// add update/patch function
-// pull out common functions
+const API_ROOT = `/todo/Todos`;
 
-export const getTodos = async (): Promise<{ value: Todo[] }> => {
-  return fetch(`/todo/Todos`).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response.json();
+export const updateTodo = async (
+  id: string,
+  { title, completed }: Partial<Todo>
+): Promise<Todo> => {
+  return send({
+    method: "PATCH",
+    url: `${API_ROOT}/${id}`,
+    payload: { title, completed },
+    useAuth: true,
   });
 };
 
+export const getTodos = async (): Promise<Todo[]> => {
+  return send({ method: "GET", url: API_ROOT });
+};
+
 export const removeTodo = async (id: string): Promise<Response> => {
-  return fetch(`/todo/Todos/${id}`, {
+  return send({
     method: "DELETE",
-    headers: {
-      Authorization: "Basic YWxpY2U6dGVzdA==",
-    },
-  }).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response;
+    url: `${API_ROOT}/${id}`,
+    useAuth: true,
   });
 };
 
 export const addTodo = async (title: string): Promise<Todo> => {
-  return fetch("/todo/Todos", {
+  return send({
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Basic YWxpY2U6dGVzdA==",
-    },
-    body: JSON.stringify({ title: title }),
-  }).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response.json();
+    url: API_ROOT,
+    payload: { title: title },
+    useAuth: true,
   });
 };
+
+// Would be interesting to use: https://sap.github.io/cloud-sdk/docs/js/features/odata/generate-client
+
+async function send({
+  method,
+  url,
+  payload,
+  resKey,
+  useAuth,
+}: {
+  method: string;
+  url: string;
+  payload?: object;
+  resKey?: string | number;
+  useAuth?: boolean;
+}): Promise<any> {
+  const headers: HeadersInit = {};
+  const options: RequestInit = { method, headers };
+
+  if (payload !== undefined) {
+    headers["Content-Type"] = "application/json";
+    options.body = JSON.stringify(payload);
+  }
+
+  if (useAuth) headers["Authorization"] = "Basic YWxpY2U6dGVzdA==";
+
+  try {
+    const response = await fetch(url, options);
+    const json = await response.json();
+    return resKey ? json[resKey] : json;
+  } catch (err) {
+    // if (err && err.response && err.response.status === 401) {
+    //   actions.logout();
+    // }
+    return err;
+  }
+}
