@@ -14,8 +14,11 @@ import { type Todo, todos, actions } from "../stores/todo";
 export const Table: Component = () => {
   const onToggle = (event: Event) =>
     actions.toggleTodo((event.currentTarget as HTMLElement).dataset?.item!);
-  const onDelete = (event: Event) =>
-    actions.removeTodo((event.currentTarget as HTMLElement).dataset?.item!);
+  const onDelete = async (event: Event) => {
+    actions
+      .removeTodo((event.currentTarget as HTMLElement).dataset?.item!)
+      .catch((err) => console.error(err));
+  };
 
   return (
     <>
