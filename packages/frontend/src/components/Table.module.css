@@ -2,3 +2,9 @@ ui5-table ui5-table-column.tableHeader::part(column) {
 	text-align: center;
 	font-weight: bold;
 }
+
+.tableContainer {
+	max-height: 50vh;
+	overflow: scroll;
+	overflow-x: hidden;
+}

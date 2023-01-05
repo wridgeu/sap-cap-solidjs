@@ -21,8 +21,8 @@ export const Table: Component = () => {
   };
 
   return (
-    <>
-      <ui5-table>
+    <div class={styles.tableContainer}>
+      <ui5-table sticky-column-header="true">
         <Show
           when={todos[1]}
           fallback={
@@ -78,6 +78,6 @@ export const Table: Component = () => {
           )}
         </For>
       </ui5-table>
-    </>
+    </div>
   );
 };
