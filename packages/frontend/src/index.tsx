@@ -14,6 +14,7 @@ declare module "solid-js" {
       "ui5-table-cell": HTMLAttributes<HTMLElement>;
       "ui5-badge": HTMLAttributes<HTMLElement>;
       "ui5-button": HTMLAttributes<HTMLElement>;
+      "ui5-toast": HTMLAttributes<HTMLElement>;
       "ui5-input": HTMLAttributes<HTMLElement> & {
         "show-clear-icon"?: boolean;
         value?: string;

@@ -14,7 +14,7 @@ export type Todo = {
 export const [todos, setTodos] = createStore<Todo[]>([]);
 
 export const actions = {
-  async toggleTodo(id: string) {
+  async toggleTodo(id: string): Promise<void> {
     const todo = todos.find((todo) => todo.ID === id);
 
     if (!todo) return;
@@ -30,7 +30,7 @@ export const actions = {
       console.error(error);
     }
   },
-  async addTodo(title: string) {
+  async addTodo(title: string): Promise<void> {
     try {
       const response = await addTodo(title);
       setTodos([...todos, response]);
@@ -41,7 +41,7 @@ export const actions = {
   // addTodo(title: string, completed = false) {
   //   setTodos([...todos, { title, completed }]);
   // }, → explore overloading in ts
-  async removeTodo(id: string) {
+  async removeTodo(id: string): Promise<void> {
     try {
       await removeTodo(id);
       setTodos([...todos.filter((todo) => todo.ID !== id)]);

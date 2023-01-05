@@ -15,7 +15,8 @@ export const updateTodo = async (
 };
 
 export const getTodos = async (): Promise<Todo[]> => {
-  return send({ method: "GET", url: API_ROOT });
+  const { value: Response } = await send({ method: "GET", url: API_ROOT });
+  return Response;
 };
 
 export const removeTodo = async (id: string): Promise<Response> => {
@@ -65,9 +66,7 @@ async function send({
     const json = await response.json();
     return resKey ? json[resKey] : json;
   } catch (err) {
-    // if (err && err.response && err.response.status === 401) {
-    //   actions.logout();
-    // }
+    // if (err && err.response && err.response.status === 401) {}
     return err;
   }
 }

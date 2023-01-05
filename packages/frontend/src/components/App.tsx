@@ -10,18 +10,17 @@ import { getTodos } from "../api/TodoApiWrapper";
 export const App: Component = () => {
   onMount(async () => {
     try {
-      const { value: response } = await getTodos();
-      setTodos(response);
+      setTodos(await getTodos());
     } catch (error) {
-      console.error(error);
       // create error modal
+      console.error(error);
     }
   });
 
   return (
     <div class={styles.App}>
       <header>
-        <h1>Todo App</h1>
+        <h1>Todo Demo</h1>
       </header>
       <NewItem />
       <Table />
