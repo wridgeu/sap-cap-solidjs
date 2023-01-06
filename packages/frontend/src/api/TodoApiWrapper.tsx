@@ -19,6 +19,14 @@ export const getTodos = async (): Promise<Todo[]> => {
   return Response;
 };
 
+export const getTodo = async (id: string): Promise<Todo> => {
+  const { value: Response } = await send({
+    method: "GET",
+    url: `${API_ROOT}/${id}`,
+  });
+  return Response;
+};
+
 export const removeTodo = async (id: string): Promise<Response> => {
   return send({
     method: "DELETE",

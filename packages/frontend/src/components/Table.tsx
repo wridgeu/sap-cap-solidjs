@@ -1,4 +1,4 @@
-import { Component, For, Show } from "solid-js";
+import { Component, ErrorBoundary, For, Show } from "solid-js";
 import "@ui5/webcomponents/dist/Table";
 import "@ui5/webcomponents/dist/TableColumn";
 import "@ui5/webcomponents/dist/TableRow";
@@ -23,12 +23,7 @@ export const Table: Component = () => {
   return (
     <div class={styles.tableContainer}>
       <ui5-table sticky-column-header="true">
-        <Show
-          when={todos[1]}
-          fallback={
-            <ui5-table-column slot="columns">Loading ...</ui5-table-column>
-          }
-        >
+        <Show when={todos[1]}>
           <For each={Object.keys(todos[1])}>
             {(headerTitles) => (
               <ui5-table-column slot="columns" class={styles.tableHeader}>
@@ -37,7 +32,7 @@ export const Table: Component = () => {
             )}
           </For>
         </Show>
-        <For each={todos} fallback={<ui5-table-row>Loading ...</ui5-table-row>}>
+        <For each={todos}>
           {(todoItem: Todo) => (
             <ui5-table-row>
               <ui5-table-cell>{todoItem.ID}</ui5-table-cell>

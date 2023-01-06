@@ -3,6 +3,7 @@ import { render } from "solid-js/web";
 
 import "./index.css";
 import { App } from "./components/App";
+import { Router } from "@solidjs/router";
 
 // https://stackoverflow.com/a/72239265/10323879
 declare module "solid-js" {
@@ -25,4 +26,11 @@ declare module "solid-js" {
   }
 }
 
-render(() => <App />, document.getElementById("root") as HTMLDivElement);
+render(
+  () => (
+    <Router>
+      <App />
+    </Router>
+  ),
+  document.getElementById("root") as HTMLDivElement
+);
