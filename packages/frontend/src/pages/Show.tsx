@@ -1,13 +1,17 @@
-import { useParams } from "@solidjs/router";
-import { Component, createResource } from "solid-js";
+import { useSearchParams } from "@solidjs/router";
+import { Component, Match, Switch, createResource } from "solid-js";
 import { getTodo } from "../api/TodoApiWrapper";
 // https://github.com/solidjs/solid-router#useparams
 export const Show: Component = () => {
-  const params = useParams();
-  console.log(params);
-  const [todoData, { refetch }] = createResource(() => params.id, getTodo);
+  const [params] = useSearchParams<{ id: string }>();
+  const [todo] = createResource(() => params.id, getTodo);
 
-  if (todoData.loading) <>"Loading..."</>;
-  if (!todoData.loading && !todoData()) refetch();
-  return <>{todoData()?.title}</>;
+  return (
+    <>
+      <span>{todo.loading && "Loading..."}</span>
+      <Switch>
+        <Match when={!todo.loading}>{todo().ID}</Match>
+      </Switch>
+    </>
+  );
 };

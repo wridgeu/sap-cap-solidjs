@@ -20,11 +20,10 @@ export const getTodos = async (): Promise<Todo[]> => {
 };
 
 export const getTodo = async (id: string): Promise<Todo> => {
-  const { value: Response } = await send({
+  return send({
     method: "GET",
     url: `${API_ROOT}/${id}`,
   });
-  return Response;
 };
 
 export const removeTodo = async (id: string): Promise<Response> => {
