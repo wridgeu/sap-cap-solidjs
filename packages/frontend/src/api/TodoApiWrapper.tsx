@@ -66,7 +66,7 @@ async function send({
     options.body = JSON.stringify(payload);
   }
 
-  if (useAuth) headers["Authorization"] = "Basic YWxpY2U6dGVzdA==";
+  if (useAuth) headers["credentials"] = "include";
 
   try {
     const response = await fetch(url, options);
