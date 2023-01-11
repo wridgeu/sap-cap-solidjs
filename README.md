@@ -55,8 +55,8 @@ Web Dev Concepts, not using [SolidStart](https://start.solidjs.com/getting-start
 - components and their lifecycle
 - lazy loaing of components as well as dynamic import module name remapping for named xports to default export
 - css modules
-- signals,stores, resources
-- JSX, Frament shorthand
+- signals, stores, resources
+- JSX, Fragment shorthand
 - embedding Web Components and extending the TS module declaration to make them "known"
   - https://stackoverflow.com/a/70820159/10323879
   - https://stackoverflow.com/a/72239265/10323879
