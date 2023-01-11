@@ -15,7 +15,9 @@ export const updateTodo = async (
 };
 
 export const getTodos = async (): Promise<Todo[]> => {
-  const { value: Response } = await send({ method: "GET", url: API_ROOT });
+  const { value: Response } = await send<
+    Promise<{ "@odata.context": string; value: Todo[] }>
+  >({ method: "GET", url: API_ROOT });
   return Response;
 };
 
@@ -45,19 +47,17 @@ export const addTodo = async (title: string): Promise<Todo> => {
 
 // Would be interesting to use: https://sap.github.io/cloud-sdk/docs/js/features/odata/generate-client
 // so one could make a fully typed client-api for all the requests incl. all of ODatas params/options (count ...)
-async function send({
+async function send<T>({
   method,
   url,
   payload,
-  resKey,
   useAuth,
 }: {
   method: string;
   url: string;
   payload?: object;
-  resKey?: string | number;
   useAuth?: boolean;
-}): Promise<any> {
+}): Promise<T> {
   const headers: HeadersInit = {};
   const options: RequestInit = { method, headers };
 
@@ -70,10 +70,14 @@ async function send({
 
   try {
     const response = await fetch(url, options);
-    const json = await response.json();
-    return resKey ? json[resKey] : json;
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json() as Promise<T>;
   } catch (err) {
     // if (err && err.response && err.response.status === 401) {}
-    return err;
+    throw new Error("Issue occured when trying to fetch from server.", {
+      cause: err,
+    });
   }
 }
