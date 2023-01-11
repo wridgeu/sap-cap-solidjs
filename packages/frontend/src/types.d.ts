@@ -4,18 +4,16 @@ import "solid-js"; //thanks to: https://github.com/solidjs/solid/issues/616#issu
 declare module "solid-js" {
   namespace JSX {
     interface IntrinsicElements {
-      "ui5-table": HTMLAttributes<HTMLElement>; //JSX.IntrinsicElements["table"];
+      "ui5-table": HTMLAttributes<HTMLElement>;
       "ui5-table-column": HTMLAttributes<HTMLElement>;
       "ui5-table-row": HTMLAttributes<HTMLElement>;
       "ui5-table-cell": HTMLAttributes<HTMLElement>;
       "ui5-badge": HTMLAttributes<HTMLElement>;
       "ui5-button": HTMLAttributes<HTMLElement>;
-      "ui5-toast": HTMLAttributes<HTMLElement>;
-      "ui5-input": HTMLAttributes<HTMLElement> & {
-        "show-clear-icon"?: boolean;
-        value?: string;
-        placeholder?: string;
+      "ui5-toast": HTMLAttributes<HTMLElement> & {
+        show: () => void;
       };
+      "ui5-input": HTMLInputElement;
       "ui5-icon": HTMLAttributes<HTMLElement> & { name: string; slot: string };
     }
   }
