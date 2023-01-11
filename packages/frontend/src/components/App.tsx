@@ -30,30 +30,30 @@ export const App: Component = () => {
   });
 
   return (
-    <div class={styles.App}>
-      <header>
+    <>
+      <header class={styles.header}>
         <h1>Todo Demo</h1>
+        <nav>
+          <ui5-button>
+            <A href="/todos/add">Add Todo Item</A>
+          </ui5-button>
+          <ui5-button>
+            <A href="/todos/list">Show Todos</A>
+          </ui5-button>
+          <ui5-button>
+            <A href="/todos/?id=14436e33-7588-44ca-bc42-e5f403d9d854">
+              Show Todo
+            </A>
+          </ui5-button>
+        </nav>
       </header>
-      <nav>
-        <ui5-button>
-          <A href="/todos/add">Add Todo Item</A>
-        </ui5-button>
-        <ui5-button>
-          <A href="/todos/list">Show Todos</A>
-        </ui5-button>
-        <ui5-button>
-          <A href="/todos/?id=14436e33-7588-44ca-bc42-e5f403d9d854">
-            Show Todo
-          </A>
-        </ui5-button>
-      </nav>
-      <div>
+      <div style="text-align: center; margin-top: 25px">
         <Routes>
           <Route path="/todos/add" component={Add}></Route>
           <Route path="/todos/list" component={List}></Route>
           <Route path="/todos/" component={Show} />
         </Routes>
       </div>
-    </div>
+    </>
   );
 };
