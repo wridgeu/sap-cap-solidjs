@@ -1,17 +1,20 @@
-GET http://localhost:4004/todo/Todos
+@protocol=https
+@host=localhost:4004 
+
+GET {{protocol}}://{{host}}/todo/Todos
 
 ###
 
-GET http://localhost:4004/todo/Todos/14436e33-7588-44ca-bc42-e5f403d9d854
+GET {{protocol}}://{{host}}/todo/Todos/14436e33-7588-44ca-bc42-e5f403d9d854
 
 ###
 
-DELETE  http://localhost:4004/todo/Todos/df3ae572-3f3a-49a5-b0cf-6f9cb8ee32c6
+DELETE {{protocol}}://{{host}}/todo/Todos/df3ae572-3f3a-49a5-b0cf-6f9cb8ee32c6
 Authorization: Basic YWxpY2U6dGVzdA==
 
 ###
 
-POST http://localhost:4004/todo/Todos
+POST {{protocol}}://{{host}}/todo/Todos
 content-type: application/json
 Authorization: Basic YWxpY2U6dGVzdA==
 
@@ -21,7 +24,7 @@ Authorization: Basic YWxpY2U6dGVzdA==
 
 ###
 
-PATCH http://localhost:4004/todo/Todos/50b56bcd-70e3-4069-99bf-e04a2127d585
+PATCH {{protocol}}://{{host}}/todo/Todos/50b56bcd-70e3-4069-99bf-e04a2127d585
 content-type: application/json
 Authorization: Basic YWxpY2U6dGVzdA==
 
