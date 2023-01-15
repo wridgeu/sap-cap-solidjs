@@ -69,9 +69,10 @@ Web Dev Concepts, not using [SolidStart](https://start.solidjs.com/getting-start
 - Getting to know Vite & Vitest a bit better
   - using the dev proxy in vite
 - Learning a bit more about authentication thanks to this [blog post](https://www.smashingmagazine.com/2023/01/authentication-websites-banking-analogy) which also made me realize that I can use "`credentials` = `include`" in fetch when working with Basic Auth to let the browser do the work on manual (JS based) API calls
-- working with/using ambient type, function, module or variable declarations and a better understanding for the `types.d.ts` file
+- Working with/using ambient type, function, module or variable declarations and a better understanding for the `types.d.ts` file
   - [Ambient Modules](https://www.typescriptlang.org/docs/handbook/modules.html#ambient-modules)
   - [O'Reilly Programming Typescript](https://www.oreilly.com/library/view/programming-typescript/9781492037644/)
+- Explored differences of package managers thanks to this [blog post](https://blog.logrocket.com/javascript-package-managers-compared/) shared by Peter Muessig and started using [pnpm](https://pnpm.io/) due to its more efficient disk space usage
 - Better understanding of Typescript Generics thanks to various blog posts and videos, just to mention two:
   - [YT Video](https://youtu.be/t0qQSujSslQ)
   - [SO Question](https://stackoverflow.com/questions/41103360/how-to-use-fetch-in-typescript/49471725#49471725)
