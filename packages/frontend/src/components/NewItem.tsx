@@ -21,8 +21,7 @@ export const NewItem: Component = () => {
       <ui5-input
         ref={input!} // https://www.typescriptlang.org/docs/handbook/jsx.html
         show-clear-icon
-        placeholder="Beschreibung"
-        // onChange={addTodo}
+        placeholder="Beschreibung" // i18n
       ></ui5-input>
       <ui5-button onClick={addTodo}>Add</ui5-button>
       <ui5-toast ref={toast!}>Item has been added!</ui5-toast>
