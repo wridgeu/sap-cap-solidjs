@@ -6,7 +6,7 @@ Playground Monorepo to learn more about SAP CAP, a bit of SolidJS and maybe even
 
 ### Testing
 
-- [ ] [CAP Tests](https://cap.cloud.sap/docs/node.js/cds-test)
+- [ ] [CAP Tests](https://cap.cloud.sap/docs/node.js/cds-test) https://blogs.sap.com/2020/05/31/cap-unit-testing-using-mocha-and-chai/
 - [X] [Vitest](https://vitest.dev/) for [SolidJS](https://github.com/solidjs/solid-testing-library)
 
 ### CAP
