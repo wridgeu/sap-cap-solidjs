@@ -53,7 +53,7 @@ Here I want to note things that I've learned or looked into along the way.
 Web Dev Concepts, not using [SolidStart](https://start.solidjs.com/getting-started/what-is-solidstart) as it is in beta and I wanted to go "raw" here.
 
 - components and their lifecycle
-- lazy loaing of components as well as dynamic import module name remapping for named xports to default export
+- lazy loading of components as well as dynamic import module name remapping for named xports to default export
 - css modules
 - signals, stores, resources
 - JSX, Fragment shorthand
